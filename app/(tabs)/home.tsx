@@ -3,12 +3,16 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { HeaderWithAvatar } from '@/components/HeaderWithAvatar';
 import { ThemedView as View } from '@/components/ThemedView';
+import UserList from '@/components/UserList';
 
-export default function Calendar() {
+export default function Home() {
+
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor:"#fff" }}>
         <View style={styles.container}>
           <HeaderWithAvatar title='Hola, Diana!'/>
+          <UserList />
         </View>
     </SafeAreaView>
   );
@@ -19,6 +23,7 @@ const styles = StyleSheet.create({
       flex: 1,
       marginHorizontal: 20,
       marginTop: 50,
-      height: "100%"
+      height: "100%",
+      gap: 20
     },
 })

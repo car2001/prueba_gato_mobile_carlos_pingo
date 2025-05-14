@@ -4,7 +4,7 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeaderWithAvatar } from '@/components/HeaderWithAvatar';
 import { ThemedView as View } from '@/components/ThemedView';
 
-export default function Calendar() {
+export default function Notifications() {
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor:"#fff" }}>
         <View style={styles.container}>

@@ -21,6 +21,7 @@ export default function RootLayout() {
 
   return (
     <AuthProvider>
+
       <RootLayoutNav/>
     </AuthProvider>
   );

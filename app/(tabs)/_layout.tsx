@@ -1,15 +1,17 @@
-import { Redirect, Tabs } from 'expo-router';
+import { Redirect, Tabs, useRouter } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 
 import { ThemedView as View } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
 import { useAuth } from '@/context/AuthContext';
+import { UserProvider } from '@/context/UserContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
 import { AddIcon, CalendarIcon, DocumentIcon, HomeIcon, NotificationsIcon } from '../../lib/Icons';
 
 const TabNavigation = () => {
   const colorScheme = useColorScheme();
+  const router = useRouter();
 
   return (
     <Tabs
@@ -89,7 +91,9 @@ export default function TabLayout() {
     !authenticated 
       ? <Redirect href="/" /> 
       : (
-        <TabNavigation />
+        <UserProvider>
+          <TabNavigation />
+        </UserProvider>
       )
   )
 }

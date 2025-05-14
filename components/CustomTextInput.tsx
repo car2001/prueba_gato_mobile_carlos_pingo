@@ -114,10 +114,10 @@ const CustomTextInput = ({
 const styles = StyleSheet.create({
 	container: {
 		position: "relative",
-		paddingBottom:8,
-		paddingTop: 10,
-		marginBottom: 5,
-		marginTop: 5,
+		paddingBottom:5,
+		paddingTop: 5,
+		marginBottom: 2,
+		marginTop: 2,
 	},
 	label: {
 		position: "absolute",

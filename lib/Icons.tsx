@@ -33,3 +33,11 @@ export const NotificationsIcon = (props: any) => (
 export const AddIcon = (props: any) => (
     <FontAwesome6 name="add" size={20} color="#888" {...props} />
 )
+
+export const EditIcon = (props: any) => (
+    <Feather name="edit-3" size={20} color="#888" {...props} />
+)
+
+export const ArrowBack = (props: any) => (
+    <Ionicons name="arrow-back" size={20} color="#888" {...props} />
+)

@@ -1,18 +1,19 @@
-import { Image, StyleSheet, TouchableOpacity } from 'react-native';
+import { Image, ImageStyle, StyleProp, StyleSheet, TouchableOpacity } from 'react-native';
 
 type AvatarProps = {
   onPress?: () => void;
   avatarUri?: string;
+  styleAvatar?: StyleProp<ImageStyle>; 
 };
 
-const Avatar = ({ onPress, avatarUri }: AvatarProps) => {
+const Avatar = ({ onPress, avatarUri, styleAvatar }: AvatarProps) => {
   return (
     <TouchableOpacity onPress={onPress}>
       <Image
         source={{
           uri: avatarUri ?? 'https://reqres.in/img/faces/12-image.jpg',
         }}
-        style={styles.avatar}
+        style={[styles.avatar, styleAvatar]}
       />
     </TouchableOpacity>
   );

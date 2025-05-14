@@ -3,7 +3,6 @@ import loginService from "@/services/auth/login";
 import { createContext, useContext, useEffect, useState } from "react";
 
 import { AUTH_TOKEN_KEY } from "@/constants/StorageConstants";
-import useUserStore from "@/stores/UserStore";
 import { getItem, removeItem, setItem } from "@/utils/storage";
 
 type AuthStateType = {
@@ -37,7 +36,6 @@ export const AuthProvider = ({children}: any) => {
         user: null
     });
 
-    const {setUsers} = useUserStore();
 
     useEffect(() => {
         const loadAuthState = async () => {

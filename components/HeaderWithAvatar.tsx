@@ -1,4 +1,3 @@
-// components/HeaderWithAvatar.tsx
 import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import Avatar from './Avatar';
