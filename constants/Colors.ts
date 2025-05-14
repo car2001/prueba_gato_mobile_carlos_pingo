@@ -3,24 +3,40 @@
  * There are many other ways to style your app. For example, [Nativewind](https://www.nativewind.dev/), [Tamagui](https://tamagui.dev/), [unistyles](https://reactnativeunistyles.vercel.app), etc.
  */
 
-const tintColorLight = '#0a7ea4';
-const tintColorDark = '#fff';
+const tintColorLight = '#4608AD';
+const tintColorDark = '#4608AD';
 
 export const Colors = {
   light: {
+    primaryColor: "#4608AD",
     text: '#11181C',
     background: '#fff',
     tint: tintColorLight,
     icon: '#687076',
-    tabIconDefault: '#687076',
+    tabIconDefault: '#fff',
     tabIconSelected: tintColorLight,
+    backgroundInputColor:"#F1F5F9",
+    shadowInputColor: "#000",
+    borderInputColor: "#ddd",
+    placeholderTextColor:"#888",
+    errorColor:"#f35369",
+    labelColor: "#333",
+    backgroundDisabledInputColor:"#f5f5f5"
   },
   dark: {
-    text: '#ECEDEE',
-    background: '#151718',
-    tint: tintColorDark,
-    icon: '#9BA1A6',
-    tabIconDefault: '#9BA1A6',
+    primaryColor: "#4608AD",
+    text: '#11181C',
+    background: '#fff',
+    tint: tintColorLight,
+    icon: '#687076',
+    tabIconDefault: '#fff',
     tabIconSelected: tintColorDark,
+    backgroundInputColor:"#F1F5F9",
+    shadowInputColor: "#000",
+    borderInputColor: "#ddd",
+    placeholderTextColor:"#888",
+    errorColor:"#f35369",
+    labelColor: "#333",
+    backgroundDisabledInputColor:"#f5f5f5"
   },
 };

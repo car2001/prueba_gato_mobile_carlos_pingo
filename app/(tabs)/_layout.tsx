@@ -1,14 +1,14 @@
-import { Tabs } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
+import { ThemedView as View } from '@/components/ThemedView';
 import { Colors } from '@/constants/Colors';
+import { useAuth } from '@/context/AuthContext';
 import { useColorScheme } from '@/hooks/useColorScheme';
+import { AddIcon, CalendarIcon, DocumentIcon, HomeIcon, NotificationsIcon } from '../../lib/Icons';
 
-export default function TabLayout() {
+const TabNavigation = () => {
   const colorScheme = useColorScheme();
 
   return (
@@ -16,30 +16,80 @@ export default function TabLayout() {
       screenOptions={{
         tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
         headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
         tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
+          default: {
+            backgroundColor: '#fff',
+            elevation: 10,
+            shadowColor: '#000',
+            shadowOffset: {
+              width: 0,
+              height: -2,
+            },
+            shadowOpacity: 0.1,
+            shadowRadius: 5,
+            borderTopWidth: 0, 
           },
-          default: {},
         }),
       }}>
       <Tabs.Screen
-        name="index"
+        name="home"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Inicio',
+          tabBarIcon: ({ color }) => <HomeIcon color={color} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="calendar"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Calendario',
+          tabBarIcon: ({ color }) => <CalendarIcon color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="register"
+        options={{
+          title: 'Registrar',
+          tabBarIcon: ({ color }) => (
+            <View
+              style={{
+                backgroundColor: '#4608AD',
+                borderRadius: 35,
+                padding: 5,
+                height:"auto"
+              }}>
+                <AddIcon color="#fff" />
+            </View>
+          ),
+        }}
+      />
+      <Tabs.Screen
+        name="documents"
+        options={{
+          title: 'Documentos',
+          tabBarIcon: ({ color }) => <DocumentIcon color={color} />,
+        }}
+      />
+      <Tabs.Screen
+        name="notifications"
+        options={{
+          title: 'Notificaciones',
+          tabBarIcon: ({ color }) => <NotificationsIcon color={color} />,
         }}
       />
     </Tabs>
   );
+}
+
+export default function TabLayout() {
+  const { authState } = useAuth();
+  const authenticated = authState?.authenticated;
+  console.log(authenticated);
+
+  return(
+    !authenticated 
+      ? <Redirect href="/" /> 
+      : (
+        <TabNavigation />
+      )
+  )
 }

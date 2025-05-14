@@ -1,0 +1,16 @@
+[
+    {
+      "id": "1",
+      "name": "Juan Pérez",
+      "email": "juan@example.com",
+      "dni": "12345678",
+      "active": true
+    },
+    {
+      "id": "2",
+      "name": "María López",
+      "email": "maria@example.com",
+      "dni": "87654321",
+      "active": false
+    }
+]
