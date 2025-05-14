@@ -17,7 +17,7 @@ export default function Index() {
             }
             
         } catch (exception: any) {
-
+            console.log(exception)
         }
         return false;
     };

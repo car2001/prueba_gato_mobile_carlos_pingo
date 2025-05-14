@@ -1,6 +1,7 @@
 import { z } from "zod";
 
 export const userSchema = z.object({
+    id: z.string().optional(),
     name: z
         .string({required_error: "El campo nombre es obligatorio."})
         .min(1, {message: "El campo nombre es obligatorio."}),

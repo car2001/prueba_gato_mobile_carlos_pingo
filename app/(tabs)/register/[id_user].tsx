@@ -1,37 +1,71 @@
-import { useLocalSearchParams } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useEffect, useState } from 'react';
 import { StyleSheet } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { UserForm } from '@/components/forms/UserForm';
+import { ThemedScrollView as ScrollView } from "@/components/ThemedScrollView";
 import { ThemedView as View } from '@/components/ThemedView';
-
-const titles = {
-  add: "Crear usuario",
-  edit: "Editar usuario",
-};
+import { useUser } from "@/context/UserContext";
+import { User } from "@/models/user";
 
 
 export default function DetailUser() {
 
   const { id_user } = useLocalSearchParams();
   const [mode, setMode] = useState<"add" | "edit">("add");
-  const [userData, setUserData] = useState<any>(null);
+  const [userData, setUserData] = useState<User>();
+  const { addUser, updateUser, getUserById } = useUser();
 
-    useEffect(() => {
-    if (id_user && id_user !== "new") {
+  useEffect(() => {
+    if (id_user) {
       setMode("edit");
-      // loadUser();
+      loadUser();
     } else {
       setMode("add");
     }
   }, [id_user]);
 
+  const loadUser = async() => {
+    console.log(typeof id_user);
+    if (id_user){
+      console.log("search")
+      const user = getUserById(id_user.toString());
+      console.log(user);
+      setUserData(user);
+    }
+  }
+
+  const handleSave = async ({ user }: { user: User }) => {
+    try 
+    {
+      if (!id_user && mode === "add") {
+        addUser(user);
+      }
+
+      if(id_user && mode === "edit"){
+        console.log("edit")
+        updateUser(user);
+      }
+
+      setTimeout(() => router.navigate("/home"), 1000);
+    }
+    catch (exception: any) {
+      console.error(exception);
+    }
+  }
+
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
-      <View style={styles.container}>
-        <UserForm mode={mode} userDefaultValues={userData}/>
-      </View>
+      <ScrollView>
+        <View style={styles.container}>
+          <UserForm 
+            mode={mode} 
+            userDefaultValues={userData} 
+            handleSaveUser={handleSave} 
+          />
+        </View>
+      </ScrollView>
     </SafeAreaView>
   );
 }

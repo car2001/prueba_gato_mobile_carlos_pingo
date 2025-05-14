@@ -1,5 +1,5 @@
 import { ArrowBack } from '@/lib/Icons';
-import { useNavigation, useRouter } from 'expo-router';
+import { useNavigation } from 'expo-router';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 
@@ -9,7 +9,6 @@ type HeaderFormProps = {
 };
 
 export default function HeaderForm({ title, onSave }: HeaderFormProps) {
-  const router = useRouter();
   const navigation = useNavigation();
 
   return (

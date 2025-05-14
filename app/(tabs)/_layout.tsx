@@ -85,7 +85,6 @@ const TabNavigation = () => {
 export default function TabLayout() {
   const { authState } = useAuth();
   const authenticated = authState?.authenticated;
-  console.log(authenticated);
 
   return(
     !authenticated 

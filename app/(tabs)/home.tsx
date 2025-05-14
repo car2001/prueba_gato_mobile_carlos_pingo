@@ -4,26 +4,39 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 import { HeaderWithAvatar } from '@/components/HeaderWithAvatar';
 import { ThemedView as View } from '@/components/ThemedView';
 import UserList from '@/components/UserList';
+import { useUser } from '@/context/UserContext';
+import { useEffect } from 'react';
 
 export default function Home() {
 
+  const { fetchUsers } = useUser();
+
+  const loadUsers = async () => {
+    await fetchUsers();
+  }
+
+  useEffect(() => {
+    loadUsers();
+  }, [])
 
   return (
-    <SafeAreaView style={{ flex: 1, backgroundColor:"#fff" }}>
+    <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
+      {/* <ScrollView> */}
         <View style={styles.container}>
-          <HeaderWithAvatar title='Hola, Diana!'/>
+          <HeaderWithAvatar title='Hola, Diana!' />
           <UserList />
         </View>
+      {/* </ScrollView> */}
     </SafeAreaView>
   );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      marginHorizontal: 20,
-      marginTop: 50,
-      height: "100%",
-      gap: 20
-    },
+  container: {
+    flex: 1,
+    marginHorizontal: 20,
+    marginTop: 50,
+    height: "100%",
+    gap: 20
+  },
 })

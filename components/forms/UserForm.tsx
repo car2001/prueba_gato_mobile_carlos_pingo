@@ -1,32 +1,53 @@
 import { zodResolver } from "@hookform/resolvers/zod";
+import { useEffect } from "react";
 import { Controller, useForm } from "react-hook-form";
 import { StyleSheet } from "react-native";
 
 import CustomTextInput from "@/components/CustomTextInput";
 import { ThemedView as View } from "@/components/ThemedView";
 import { UserSchema, userSchema } from "@/lib/schemas/user.schema";
+import { User } from "@/models/user";
 import Avatar from "../Avatar";
 import HeaderForm from "../HeaderForm";
 
 interface UserFormProps {
   mode: "add" | "edit";
-  userDefaultValues?: any;
+  userDefaultValues?: UserSchema;
+  handleSaveUser: ({user}: {user: User}) => Promise<void>;
 }
 
-export const UserForm = ({ mode, userDefaultValues }: UserFormProps) => {
+export const UserForm = ({ mode, userDefaultValues, handleSaveUser }: UserFormProps) => {
 
-    const {
+  const {
     control,
+    reset,
     handleSubmit,
     formState: { errors },
   } = useForm<UserSchema>({
     resolver: zodResolver(userSchema),
-    defaultValues: userDefaultValues || {},
+    defaultValues: userDefaultValues,
   });
+
+
+  const onSaveEmpresa = async (data: UserSchema) => {
+    console.log("save", data)
+    const oUser = {
+      id: data.id ?? "",
+      name: data.name,
+      email: data.email,
+      dni: data.dni,
+      active: true,
+    }
+    await handleSaveUser({user:oUser});
+  }
+
+  useEffect(() => {
+    reset(userDefaultValues);
+  }, [userDefaultValues]);
 
   return (
     <>
-      <HeaderForm title={mode === "edit" ? "Editar Usuario" : "Crear Usuario"} onSave={() => console.log("xd")} />
+      <HeaderForm title={mode === "edit" ? "Editar Usuario" : "Crear Usuario"} onSave={handleSubmit(onSaveEmpresa)} />
       <View style={styles.container}>
         <View style={styles.avatarWrapper}>
           <Avatar styleAvatar={styles.avatar} />
