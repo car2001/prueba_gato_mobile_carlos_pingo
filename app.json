@@ -1,7 +1,5 @@
 {
   "expo": {
-    "name": "prueba_gato_mobile_carlos_pingo",
-    "slug": "prueba_gato_mobile_carlos_pingo",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -48,7 +46,7 @@
     "extra": {
       "router": {},
       "eas": {
-        "projectId": "09808d69-9b98-433e-a524-ca1ba1832594"
+        "projectId": "2287e69d-8e9b-4a08-b17a-0a5deb037551"
       }
     }
   }

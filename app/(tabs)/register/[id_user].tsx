@@ -18,32 +18,32 @@ export default function DetailUser() {
   const { addUser, updateUser, getUserById } = useUser();
 
   useEffect(() => {
+
+    const loadUser = async () => {
+      console.log(typeof id_user);
+      if (id_user) {
+        console.log("search")
+        const user = getUserById(id_user.toString());
+        console.log(user);
+        setUserData(user);
+      }
+    }
+
     if (id_user) {
       setMode("edit");
       loadUser();
     } else {
       setMode("add");
     }
-  }, [id_user]);
-
-  const loadUser = async() => {
-    console.log(typeof id_user);
-    if (id_user){
-      console.log("search")
-      const user = getUserById(id_user.toString());
-      console.log(user);
-      setUserData(user);
-    }
-  }
+  }, [id_user, getUserById]);
 
   const handleSave = async ({ user }: { user: User }) => {
-    try 
-    {
+    try {
       if (!id_user && mode === "add") {
         addUser(user);
       }
 
-      if(id_user && mode === "edit"){
+      if (id_user && mode === "edit") {
         console.log("edit")
         updateUser(user);
       }
@@ -54,15 +54,21 @@ export default function DetailUser() {
       console.error(exception);
     }
   }
+  const transformedUserData = userData
+  ? {
+      ...userData,
+      repeat_password: "",
+    }
+  : undefined;
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
       <ScrollView>
         <View style={styles.container}>
-          <UserForm 
-            mode={mode} 
-            userDefaultValues={userData} 
-            handleSaveUser={handleSave} 
+          <UserForm
+            mode={mode}
+            userDefaultValues={transformedUserData}
+            handleSaveUser={handleSave}
           />
         </View>
       </ScrollView>

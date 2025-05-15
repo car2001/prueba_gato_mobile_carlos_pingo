@@ -1,4 +1,4 @@
-import { Redirect, Tabs, useRouter } from 'expo-router';
+import { Redirect, Tabs } from 'expo-router';
 import React from 'react';
 import { Platform } from 'react-native';
 
@@ -11,7 +11,6 @@ import { AddIcon, CalendarIcon, DocumentIcon, HomeIcon, NotificationsIcon } from
 
 const TabNavigation = () => {
   const colorScheme = useColorScheme();
-  const router = useRouter();
 
   return (
     <Tabs

@@ -37,13 +37,14 @@ export const UserForm = ({ mode, userDefaultValues, handleSaveUser }: UserFormPr
       email: data.email,
       dni: data.dni,
       active: true,
+      password: data.password
     }
     await handleSaveUser({user:oUser});
   }
 
   useEffect(() => {
     reset(userDefaultValues);
-  }, [userDefaultValues]);
+  }, [userDefaultValues, reset]);
 
   return (
     <>

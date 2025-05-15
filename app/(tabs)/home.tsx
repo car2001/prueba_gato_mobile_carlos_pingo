@@ -11,13 +11,12 @@ export default function Home() {
 
   const { fetchUsers } = useUser();
 
-  const loadUsers = async () => {
-    await fetchUsers();
-  }
-
   useEffect(() => {
+    const loadUsers = async () => {
+      await fetchUsers();
+    }
     loadUsers();
-  }, [])
+  }, [fetchUsers])
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: "#fff" }}>
